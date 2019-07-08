@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    image: samuellucas/web
+    container_name: web
+    restart: always
+    networks: 
+      - web
+    volumes:
+      - ../data:/var/www/html
+      - ./sites-available:/etc/apache2/sites-available
+      - ./sites-enabled:/etc/apache2/sites-enabled
+    labels:
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:eventeasy.cf;"
+
+networks:
+  web:
+    external:
+      name: web
+  default:
+    driver: overlay

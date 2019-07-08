@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:5.6
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: eunaoseiminhasenha
+    volumes:
+      - "../data/:/var/lib/mysql"
+    labels:
+      - "traefik.enable=false"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    volumes:
+      - ./php.ini:/usr/local/etc/php/php.ini
+    environment:
+      PMA_HOST: 18.220.203.107
+      PMA_ABSOLUTE_URI: "https://eventeasy.cf/phpmyadmin"
+      MYSQL_ROOT_PASSWORD: eunaoseiminhasenha
+    networks: 
+      - web
+    labels:
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:eventeasy.cf; PathPrefix: /phpmyadmin"
+    depends_on:
+      - mysql
+
+networks:
+  web:
+    external:
+      name: web

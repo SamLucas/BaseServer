@@ -1,0 +1,17 @@
+version: '3'
+services:
+  web:
+    image: samuellucas/tomcat
+    container_name: tomcat
+    restart: always
+    networks: 
+      - web
+    labels:
+      - "traefik.port=80"
+      - "traefik.docker.network=web"
+      - "traefik.frontend.rule=Host:tomcat.eventeasy.cf;"
+
+networks:
+  web:
+    external:
+      name: web

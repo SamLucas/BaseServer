@@ -21,14 +21,14 @@ services:
       - ./php.ini:/usr/local/etc/php/php.ini
     environment:
       PMA_HOST: 18.220.203.107
-      PMA_ABSOLUTE_URI: "https://eventeasy.cf/phpmyadmin"
+      PMA_ABSOLUTE_URI: "https://masterserver.cf/phpmyadmin"
       MYSQL_ROOT_PASSWORD: eunaoseiminhasenha
     networks: 
       - web
     labels:
       - "traefik.port=80"
       - "traefik.docker.network=web"
-      - "traefik.frontend.rule=Host:eventeasy.cf; PathPrefix: /phpmyadmin"
+      - "traefik.frontend.rule=Host:masterserver.cf; PathPrefix: /phpmyadmin"
     depends_on:
       - mysql
 

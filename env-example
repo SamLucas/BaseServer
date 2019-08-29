@@ -1,12 +1,12 @@
 # Configurações gerais 
-DOMAIN="eventeasy.cf"
+DOMAIN="
 NAME_NETWORK="web"
 
 # Configurações do container: traefik
-EMAIL_USER=samuellucas0603@gmail.com
+EMAIL_USER=
 PATH_TRAEFIK="traefik"
 
 # Configurações do container: mysql/phpmyadmin
-PATH_PHPMYADMIN="phpmyadmin"
-MYSQL_ROOT_PASSWORD="eunaoseiminhasenha"
-DB_HOST=18.220.203.107
+PATH_PHPMYADMIN=
+MYSQL_ROOT_PASSWORD=
+DB_HOST=

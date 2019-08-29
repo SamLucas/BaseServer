@@ -1,0 +1,34 @@
+defaultEntryPoints = ["http", "https"]
+
+[entryPoints]
+  [entryPoints.dashboard]
+    address = ":8080"
+    [entryPoints.dashboard.auth]
+      [entryPoints.dashboard.auth.basic]
+        users = ["admin:$apr1$AApUOrD.$GzCHmAV5APE67NoYiQbfs/"]
+  [entryPoints.http]
+    address = ":80"
+      [entryPoints.http.redirect]
+        entryPoint = "https"
+  [entryPoints.https]
+    address = ":443"
+      [entryPoints.https.tls]
+        [[entryPoints.https.tls.certificates]]
+        certFile = "./certs/certs.crt"
+        keyFile = "./certs/certs.key"
+
+[api]
+entrypoint="dashboard"
+
+[acme]
+email = "seu_email@seu_domínio"
+storage = "acme.json"
+entryPoint = "https"
+onHostRule = true
+  [acme.httpChallenge]
+  entryPoint = "http"
+
+[docker]
+domain = "masterserver.cf"
+watch = true
+network = "web"
